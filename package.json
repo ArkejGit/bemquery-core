@@ -1,10 +1,10 @@
 {
-  "name": "bemquery-package-boilerplate",
+  "name": "bemquery-core",
   "version": "0.0.0",
   "description": "BEMQuery",
-  "main": "dist/bemquery-package-boilerplate.umd.js",
-  "jsnext:main": "dist/bemquery-package-boilerplate.js",
-  "module": "dist/bemquery-package-boilerplate.js",
+  "main": "dist/bemquery-core.umd.js",
+  "jsnext:main": "dist/bemquery-core.js",
+  "module": "dist/bemquery-core.js",
   "scripts": {
     "lint": "eslint -c config/eslint/default.json src/**/*.js tests/**/*.js",
     "pretest": "npm run lint",
@@ -20,27 +20,9 @@
     "postversion": "git rm -r --cached dist/ && git commit -m \"chore(dist): clean after release [ci skip]\" && git push origin && git push origin --tags",
     "prepublish": "in-publish && npm run build || exit 0"
   },
-  "commitplease": {
-    "nohook": true,
-    "style": "angular",
-    "types": [
-      "feat",
-      "fix",
-      "docs",
-      "style",
-      "refactor",
-      "perf",
-      "test",
-      "build",
-      "ci",
-      "chore",
-      "revert"
-    ],
-    "scope": "\\S+.*"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BEMQuery/bemquery-package-boilerplate.git"
+    "url": "git+https://github.com/Arkejgit/bemquery-core.git"
   },
   "keywords": [
     "BEM",
@@ -51,14 +33,14 @@
     "tonic-example.js"
   ],
   "author": {
-    "name": "BEMQuery team",
-    "url": "https://github.com/BEMQuery"
+    "name": "Arkej",
+    "url": "https://github.com/Arkejgit"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BEMQuery/bemquery-package-boilerplate/issues"
+    "url": "https://github.com/Arkejgit/bemquery-core/issues"
   },
-  "homepage": "https://github.com/BEMQuery/bemquery-package-boilerplate#readme",
+  "homepage": "https://github.com/Arkejgit/bemquery-core#readme",
   "tonicExampleFilename": "tonic-example.js",
   "devDependencies": {
     "@bemquery/karma-sinon-chai": "^2.0.2",

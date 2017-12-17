@@ -1,23 +1,5 @@
-# bemquery-package-boilerplate
+# bemquery-core
 
-[![Build Status](https://travis-ci.org/BEMQuery/bemquery-package-boilerplate.svg?branch=master)](https://travis-ci.org/BEMQuery/bemquery-package-boilerplate) · [![Dependency Status](https://david-dm.org/BEMQuery/bemquery-package-boilerplate.svg)](https://david-dm.org/BEMQuery/bemquery-package-boilerplate) · [![devDependency Status](https://david-dm.org/BEMQuery/bemquery-package-boilerplate/dev-status.svg)](https://david-dm.org/BEMQuery/bemquery-package-boilerplate?type=dev) · [![Known Vulnerabilities](https://snyk.io/test/github/bemquery/bemquery-package-boilerplate/badge.svg)](https://snyk.io/test/github/bemquery/bemquery-package-boilerplate) · [![npm version](https://badge.fury.io/js/bemquery-package-boilerplate.svg)](https://badge.fury.io/js/bemquery-package-boilerplate) · [![Bower version](https://badge.fury.io/bo/bemquery-package-boilerplate.svg)](https://badge.fury.io/bo/bemquery-package-boilerplate) · [![codecov](https://codecov.io/gh/BEMQuery/bemquery-package-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/BEMQuery/bemquery-package-boilerplate)
+[![Build Status](https://travis-ci.org/Arkejgit/bemquery-core.svg?branch=master)](https://travis-ci.org/Arkejgit/bemquery-core) · [![Dependency Status](https://david-dm.org/Arkejgit/bemquery-core.svg)](https://david-dm.org/Arkejgit/bemquery-core) · [![devDependency Status](https://david-dm.org/Arkejgit/bemquery-core/dev-status.svg)](https://david-dm.org/Arkejgit/bemquery-core?type=dev) · [![Known Vulnerabilities](https://snyk.io/test/github/Arkejgit/bemquery-core/badge.svg)](https://snyk.io/test/github/Arkejgit/bemquery-core) · [![npm version](https://badge.fury.io/js/bemquery-core.svg)](https://badge.fury.io/js/bemquery-core) · [![Bower version](https://badge.fury.io/bo/bemquery-core.svg)](https://badge.fury.io/bo/bemquery-core) · [![codecov](https://codecov.io/gh/Arkejgit/bemquery-core/branch/master/graph/badge.svg)](https://codecov.io/gh/Arkejgit/bemquery-core)
 
-Simple boilerplate
-
----
-
-## Installation
-
-You can install this package from npm:
-```bash
-npm install bemquery-package-boilerplate [--save]
-```
-
-You can also install it from bower:
-```bash
-bower install bemquery-package-boilerplate
-```
-
-## Documentation
-
-Docs are available at http://bemquery.github.io/bemquery-package-boilerplate
+BEMQuery Core. Module created using [this boilerplate](https://github.com/Arkejgit/bemquery-core).
