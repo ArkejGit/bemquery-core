@@ -13,7 +13,7 @@ describe( 'BEMQuery', () => {
 	} );
 
 	afterEach( () => {
-		fixtrue.cleanup();
+		fixture.cleanup();
 	} );
 
 	it ( 'is a class', () => {
@@ -28,11 +28,11 @@ describe( 'BEMQuery', () => {
 		} ).to.throw( TypeError, 'Selector must be set' );
 
 		expect( () => {
-			new BEMQeury( 1, null, selectorEngine );
+			new BEMQuery( 1, null, selectorEngine );
 		} ).to.throw( TypeError, 'Selector must be a string, object, array or DOM element' );
 	} );
 
-	it ('requires proper type of SelectorEngine', () => {
+	it ( 'requires proper type of SelectorEngine', () => {
 		expect( () => {
 			new BEMQuery( 'bogus', document, 1 );
 		} ).to.throw( TypeError, 'SelectorEngine must be an object with find method defined' );
@@ -51,16 +51,16 @@ describe( 'BEMQuery', () => {
 
 		const selectorEngine1 = new SelectorEngine();
 
-		//Selector
+		// Selector
 		const bemQuery1 = new BEMQuery( 'bogus', document, selectorEngine1 );
 		expect( bemQuery1.elements ).to.deep.equal( SelectorEngine.elements );
 
-		//NodeList
+		// NodeList
 		const elements = document.querySelectorAll( '.block' );
 		const bemQuery2 = new BEMQuery( elements, document, selectorEngine1 );
 		expect( bemQuery2.elements ).to.deep.equal( Array.from( elements ) );
 
-		//BEMQuery instance
+		// BEMQuery instance
 		SelectorEngine.elements = [];
 
 		const bemQuery3 = new BEMQuery( bemQuery1, document, selectorEngine1 );
@@ -73,7 +73,7 @@ describe( 'BEMQuery', () => {
 		const context1 = document.querySelector( '.block' );
 		const context2 = document.querySelector( '.block__elem' );
 
-		//Element as a context
+		// Element as a context
 		const selectorEngine1 = new SelectorEngine();
 		const spy1 = sinon.spy( selectorEngine1, 'find' );
 
@@ -81,7 +81,7 @@ describe( 'BEMQuery', () => {
 
 		expect( spy1 ).to.have.been.calledWith( 'bogus', context1 );
 
-		//BEMQuery instance as a context
+		// BEMQuery instance as a context
 		SelectorEngine.elements = [
 			context2,
 			context1
@@ -94,7 +94,7 @@ describe( 'BEMQuery', () => {
 
 		expect( spy2 ).to.have.been.calledWith( 'bogus', context2 );
 
-		//Fallback to document as a context
+		// Fallback to document as a context
 		new BEMQuery( 'bogus', null, selectorEngine1 );
 
 		expect( spy1 ).to.have.been.calledWith( 'bogus', document );
