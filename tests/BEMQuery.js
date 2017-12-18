@@ -99,4 +99,23 @@ describe( 'BEMQuery', () => {
 
 		expect( spy1 ).to.have.been.calledWith( 'bogus', document );
 	} );
+
+	it( 'has iterator returning new BEMQuery instance', () => {
+		fixture.load( 'elements.html' );
+
+		let i = 0;
+		const elements = document.querySelectorAll( '.block' );
+
+		const selectorEngine = new SelectorEngine();
+		const bemQuery = new BEMQuery( elements, document, selectorEngine );
+
+		expect( bemQuery ).has.property( Symbol.iterator );
+
+		for ( let element of bemQuery ) { // eslint-disable-line prefer-const
+			expect( element ).to.be.instanceof( BEMQuery );
+
+			expect( element.elements ).to.have.lengthOf( 1 );
+			expect( element.elements[ 0 ] ).to.equal( elements[ i++ ] );
+		}
+	} );
 } );
