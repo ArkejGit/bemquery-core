@@ -162,3 +162,49 @@ describe( 'BEMQuery#get', () => {
 		} ).to.throw( RangeError, 'Index cannot be greater than collection\'s length.' );
 	} );
 } );
+
+describe( 'BEMQuery#each', () => {
+	before( () => {
+		fixture.setBase( 'tests/support/fixtures' );
+	} );
+
+	afterEach( () => {
+		fixture.cleanup();
+	} );
+
+	it( 'is fired once for every element', () => {
+		fixture.load( 'elements.html' );
+
+		const elements = document.querySelectorAll( '.block' );
+		const selectorEngine = new SelectorEngine();
+		const bemQuery = new BEMQuery( elements, document, selectorEngine );
+
+		const called = [];
+		const callback = ( element ) => {
+			expect( element ).to.be.instanceof( BEMQuery );
+			called.push( element.elements[ 0 ] );
+		};
+
+		bemQuery.each( callback );
+
+		expect( called ).to.be.deep.equal( bemQuery.elements );
+	} );
+
+	it( 'throws error when callback is not a function', () => {
+		const selectorEngine = new SelectorEngine();
+		const bemQuery = new BEMQuery( [], document, selectorEngine );
+
+		expect( () => {
+			bemQuery.each( 'hublabubla' );
+		} ).to.throw( TypeError, 'Callback must be a function.' );
+	} );
+
+	it( 'returns BEMQuery instance', () => {
+		const selectorEngine = new SelectorEngine();
+		const bemQuery = new BEMQuery( [], document, selectorEngine );
+
+		const result = bemQuery.each( () => {} );
+
+		expect( result ).to.be.equal( bemQuery );
+	} );
+} );
