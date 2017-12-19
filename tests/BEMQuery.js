@@ -119,3 +119,46 @@ describe( 'BEMQuery', () => {
 		}
 	} );
 } );
+
+describe( 'BEMQuery#get', () => {
+	before( () => {
+		fixture.setBase( 'tests/support/fixtures' );
+	} );
+
+	afterEach( () => {
+		fixture.cleanup();
+	} );
+
+	it( 'returns new BEMQuery instance with correct element', () => {
+		fixture.load( 'elements.html' );
+
+		const elements = document.querySelectorAll( '.block' );
+		const selectorEngine = new SelectorEngine();
+		const bemQuery = new BEMQuery( elements, document, selectorEngine );
+
+		expect( bemQuery.get( 0 ) ).to.be.an.instanceof( BEMQuery );
+		expect( bemQuery.get( 0 ).elements[ 0 ] ).to.equal( elements[ 0 ] );
+		expect( bemQuery.get( 1 ) ).to.be.an.instanceof( BEMQuery );
+		expect( bemQuery.get( 1 ).elements[ 0 ] ).to.equal( elements[ 1 ] );
+	} );
+
+	it( 'throws error for wrong indexes', () => {
+		fixture.load( 'elements.html' );
+
+		const elements = document.querySelectorAll( '.block' );
+		const selectorEngine = new SelectorEngine();
+		const bemQuery = new BEMQuery( elements, document, selectorEngine );
+
+		expect( () => {
+			bemQuery.get( 'hublabubla' );
+		} ).to.throw( TypeError, 'Index must be a correct Number.' );
+
+		expect( () => {
+			bemQuery.get( -1 );
+		} ).to.throw( RangeError, 'Index must be greater or equal to 0.' );
+
+		expect( () => {
+			bemQuery.get( 999 );
+		} ).to.throw( RangeError, 'Index cannot be greater than collection\'s length.' );
+	} );
+} );
