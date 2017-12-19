@@ -36,6 +36,28 @@ function fetchElements( query, context, selectorEngine ) {
 	}
 }
 
+function defineProperties( obj, elements ) {
+	Object.defineProperty( obj, 'elements', {
+		value: elements
+	} );
+
+	obj.elements.forEach( ( element, index ) => {
+		Object.defineProperty( obj, index, {
+			enumerable: true,
+			get() {
+				return new BEMQuery( this.elements[ index ], document, this.selectorEngine ); // eslint-disable-line no-use-before-define
+			}
+		} );
+	}, obj );
+
+	Object.defineProperty( obj, 'length', {
+		enumerable: true,
+		get() {
+			return this.elements.length;
+		}
+	} );
+}
+
 class BEMQuery {
 	constructor( query, context, selectorEngine ) {
 		if ( !checkSelectorEngine( selectorEngine ) ) {
@@ -46,12 +68,37 @@ class BEMQuery {
 
 		context = determineContext( context );
 
-		this.elements = fetchElements( query, context, selectorEngine );
+		defineProperties( this, fetchElements( query, context, selectorEngine ) );
 	}
 
-	get() {}
+	get( index ) {
 
-	each() {}
+		index = Number( index );
+
+		if ( Number.isNaN( index) ) ) {
+			throw new TypeError( 'Index must be a correct Number.' );
+		} else if ( index < 0 ) {
+			throw new RangeError( 'Index must be greater or equal to 0' );
+		} else if ( index > ( this.elements.length - 1 ) ) {
+			throw new RangeError( 'Index cannot be grater than collection\'s length.' );
+		}
+
+		return new BEMQuery( this.elements[ index ], document, this.selectorEngine );
+	}
+
+	each( callback ) {
+		if ( typeof callback !== 'function' ) {
+			throw new TypeError( 'Callback must be a function' );
+		}
+
+		const selectorEngine = this.selectorEngine;
+
+		this.elements.forEach( ( element ) => {
+			callback( new BEMQuery( element, document, selectorEngine ) );
+		} );
+
+		return this;
+	}
 
 	[ Symbol.iterator ]() {
 		let i = 0;
