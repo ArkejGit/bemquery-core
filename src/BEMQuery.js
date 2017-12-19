@@ -75,7 +75,7 @@ class BEMQuery {
 
 		index = Number( index );
 
-		if ( Number.isNaN( index) ) ) {
+		if ( Number.isNaN( index ) ) {
 			throw new TypeError( 'Index must be a correct Number.' );
 		} else if ( index < 0 ) {
 			throw new RangeError( 'Index must be greater or equal to 0' );
